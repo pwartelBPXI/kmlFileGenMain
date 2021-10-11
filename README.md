@@ -2,7 +2,7 @@
 
 # Steps:
 
-Retrieve GPRMC (GPS NMEA0183 coordinates) data from UDP 
+Retrieve GPRMC (GPS NMEA0183 coordinates) data from UDP \\
 Decode the GPRMC Data (Latitude, Longitude, Date, Time)
 Create a donut from the GPS coordinate as its centre 
 The inner circle of the donut is used to pinpoint the boat's location
