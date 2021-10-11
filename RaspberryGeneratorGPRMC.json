@@ -1,0 +1,181 @@
+[
+    {
+        "id": "75898e4317a6ab68",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "2f406df589d18951",
+        "type": "udp out",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "addr": "",
+        "iface": "",
+        "port": "",
+        "ipv": "udp4",
+        "outport": "",
+        "base64": false,
+        "multicast": "false",
+        "x": 1010,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "9606d127.d944f",
+        "type": "debug",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 710,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1227b68f.ead989",
+        "type": "function",
+        "z": "75898e4317a6ab68",
+        "name": "counter",
+        "func": "// Get the current value of the 'count' context property - default to 0\nvar count = flow.get(\"count\")||0;\n\nif (msg.topic === \"init\") {\n // set its value locally\n count = msg.payload;\n \n} else if (msg.topic === \"increment\")  {\n count=count+4;\n} else if (msg.topic === \"decrement\")  {\n count--;\n}\n// Save the new value back to context so it will be available next time\nflow.set('count',count);\n// Update the message payload and return - no need to create a new msg\nmsg.payload = \"$GPRMC,075128.000,A,\"+ count +\",N,00322.268,W,0.1,268.6,240921,0.0,E,A*10\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 420,
+        "wires": [
+            [
+                "9606d127.d944f",
+                "7b8c8c3aef5617c0"
+            ]
+        ]
+    },
+    {
+        "id": "749c878c.234b48",
+        "type": "inject",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "2",
+        "topic": "init",
+        "payload": "4742.43",
+        "payloadType": "num",
+        "x": 210,
+        "y": 260,
+        "wires": [
+            [
+                "1227b68f.ead989"
+            ]
+        ]
+    },
+    {
+        "id": "5905f8b1.98de18",
+        "type": "inject",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "increment",
+        "payloadType": "str",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "1227b68f.ead989"
+            ]
+        ]
+    },
+    {
+        "id": "41054bc1.6ff844",
+        "type": "inject",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "decrement",
+        "payloadType": "str",
+        "x": 180,
+        "y": 440,
+        "wires": [
+            [
+                "1227b68f.ead989"
+            ]
+        ]
+    },
+    {
+        "id": "7b8c8c3aef5617c0",
+        "type": "function",
+        "z": "75898e4317a6ab68",
+        "name": "Vers ordinateur sur Network Local ",
+        "func": "ipAdress = ['192.168.1.135','192.168.1.137']\n\n\nfor (i = 0; i < ipAdress.length; i++){\n    msg.port = 504;\n    msg.ip = ipAdress[i];\n    node.send(msg)\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 700,
+        "y": 400,
+        "wires": [
+            [
+                "2f406df589d18951",
+                "f2dccf93cbdafbbc"
+            ]
+        ]
+    },
+    {
+        "id": "f2dccf93cbdafbbc",
+        "type": "debug",
+        "z": "75898e4317a6ab68",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 480,
+        "wires": []
+    }
+]
