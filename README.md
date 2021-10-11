@@ -31,10 +31,10 @@ C:\\Windows\chromedriver.exe
 
 # Packages Used 
 
-- selenium\
-- math \
-- simplekml\
-- time\
-- datetime\
-- socket \
+- selenium
+- math 
+- simplekml
+- time
+- datetime
+- socket 
 - os 
