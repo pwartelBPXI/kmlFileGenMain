@@ -28,3 +28,13 @@ Make sure you download the appropriate ChromeDriver depending on your Chrome Ver
 The website to download ChromeDriver is : https://chromedriver.chromium.org/downloads
 Put the ChromeDriver in the following directory :
 C:\\Windows\chromedriver.exe
+
+# Packages Used 
+
+selenium
+math 
+simplekml
+time
+datetime
+socket 
+os 
