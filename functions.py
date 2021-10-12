@@ -57,10 +57,11 @@ def kmlGenerator(coordinates): # Function not used
 def kmlPolygonGenerator(circleColor,coordinates,smallCoord):
     kml = simplekml.Kml()
     pol = kml.newpolygon(name="GPSCircle", description="LatLonCircle",outerboundaryis=coordinates, innerboundaryis=smallCoord)
-
-    pol.style.linestyle.color = 'ff000000'          # Enter Hexagonal color code for circle Outline
-    pol.style.polystyle.color = circleColor         # Enter Hexagonal color code for circle colour
-    pol.style.polystyle.outline = 0
+    pol.style.polystyle.outline = 1
+    pol.style.polystyle.fill = 0
+    pol.style.linestyle.color = circleColor     # Enter Hexagonal color code for circle Outline
+    pol.style.polystyle.color = '007f7f7f'      # Enter Hexagonal color code for circle colour (Gray Looks Transparent)
+    
     kml.save("MyPolygon.kml")                       # Save kml file 
 #------------------------------------ Selenium Windy ---------------------------------------#
 
