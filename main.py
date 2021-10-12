@@ -1,4 +1,8 @@
 
+#----------- Making a .exe file -------------#
+# Open cmd in the Python file directory
+# pyinstaller.exe --onefile --incon=WindyLogoV1.ico main.py
+
 from selenium import webdriver
 import time
 import functions as fn
@@ -35,7 +39,7 @@ try:
         if x == 0:
             x = 1
             #---------------------------- Setting up the user input variables ---------------------------------#
-            
+
             radius = fn.radiusInput()                   # Outer radius of the donut (user input)
             innerRadius = 300                           # Inner Radius of the donut (not a user input)
             colorDict = fn.colorDict()                  # Dictionary of colors to choose from
